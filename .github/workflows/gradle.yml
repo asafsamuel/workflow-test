@@ -48,4 +48,4 @@ jobs:
 
     steps:
       - name: Run Mint
-        run: mint asafsamuel/workflow-test:latest
+        run: mint -vv asafsamuel/workflow-test:latest
