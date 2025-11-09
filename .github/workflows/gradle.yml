@@ -1,4 +1,4 @@
-name: Java CI with Gradle
+name: Java CI with Gradle, Docker Build & Push and Mint Scan
 
 on:
   push:
@@ -33,3 +33,9 @@ jobs:
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Run Mint Scan
+      uses: addnab/docker-run-action@v3
+      with:
+        image: asafsamuel/mint
+        run: mint asafsamuel/workflow-test:latest --sweet-api-key ${{ secrets.SWEET_API_KEY }}
