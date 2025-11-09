@@ -37,5 +37,5 @@ jobs:
     - name: Run Mint Scan
       uses: addnab/docker-run-action@v3
       with:
-        image: asafsamuel/mint
-        run: mint asafsamuel/workflow-test:latest --sweet-api-key ${{ secrets.SWEET_API_KEY }}
+        image: asafsamuel/mint:stg
+        run: mint asafsamuel/workflow-test:latest --sweet-api-key ${{ secrets.SWEET_API_KEY }} --sweet-env dev --sweet-subenv shiftleft
