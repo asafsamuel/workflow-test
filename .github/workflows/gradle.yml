@@ -31,16 +31,27 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-
+    - name: Run Mint Scan
+      uses: addnab/docker-run-action@v3
+      with:
+        image: asafsamuel/mint:prod
+        run: mint -vv asafsamuel/workflow-test:latest
+      env:
+        SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
+        SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
+        SWEET_ENV: dev
+        SWEET_SUBENV: shiftleft
+  
   mint:
     runs-on: ubuntu-latest
     needs: build-java
-    
+
     container:
-      image: asafsamuel/mint:stg
+      image: asafsamuel/mint:prod
     
     env:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
+      SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
       SWEET_ENV: dev
       SWEET_SUBENV: shiftleft
 
