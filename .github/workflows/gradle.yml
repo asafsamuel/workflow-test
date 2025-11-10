@@ -41,7 +41,7 @@ jobs:
           -e SWEET_ENV=dev
           -e SWEET_SUBENV=shiftleft
           -e SWEET_SECRET=${{ secrets.SWEET_SECRET }}
-        run: mint -vv asafsamuel/workflow-test:latest --sweet-api-key ${{ secrets.SWEET_API_KEY }} --sweet-env "dev" --sweet-subenv "shiftleft" # --sweet-secret ${{ secrets.SWEET_SECRET }}
+        run: mint -vv asafsamuel/workflow-test:latest
       
   # mint:
   #   runs-on: ubuntu-latest
