@@ -40,7 +40,7 @@ jobs:
         SWEET_SUBENV: shiftleft
       with:
         image: asafsamuel/mint:prod
-        run: mint -vv asafsamuel/workflow-test:latest --sweet-api-key="${{ secrets.SWEET_API_KEY }}" --sweet-env="dev" --sweet-subenv="shiftleft"
+        run: mint -vv asafsamuel/workflow-test:latest
       
   # mint:
   #   runs-on: ubuntu-latest
