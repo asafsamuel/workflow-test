@@ -45,6 +45,6 @@ jobs:
       SWEET_ENV: dev
       SWEET_SUBENV: shiftleft
 
-  #   steps:
-  #     - name: Run Mint
-  #       run: mint -vv asafsamuel/workflow-test:latest
+    steps:
+      - name: Run Mint
+        run: mint -vv asafsamuel/workflow-test:latest
