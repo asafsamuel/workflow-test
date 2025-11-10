@@ -2,9 +2,7 @@ name: Java CI with Gradle, Docker Build & Push and Mint Scan
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ main, asafsamuel-patch-1 ]
     
 jobs:
   build-java:
