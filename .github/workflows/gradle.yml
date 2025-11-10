@@ -33,10 +33,14 @@ jobs:
 
     - name: Run Mint Scan
       uses: addnab/docker-run-action@v3
-      env:
-        GITHUB_ACTIONS: "true"
       with:
         image: asafsamuel/mint:prod
+        options: >-
+          -e GITHUB_ACTIONS=true
+          -e SWEET_API_KEY=${{ secrets.SWEET_API_KEY }}
+          -e SWEET_ENV=dev
+          -e SWEET_SUBENV=shiftleft
+          -e SWEET_SECRET=${{ secrets.SWEET_SECRET }}
         run: mint -vv asafsamuel/workflow-test:latest --sweet-api-key ${{ secrets.SWEET_API_KEY }} --sweet-env "dev" --sweet-subenv "shiftleft" # --sweet-secret ${{ secrets.SWEET_SECRET }}
       
   # mint:
