@@ -3,6 +3,8 @@ name: Test Pipeline
 on:
   push:
     branches: [ main, asafsamuel-patch-1 ]
+  pull_request:
+    branches: [ "**" ]
     
 jobs:
   build-java:
@@ -37,7 +39,7 @@ jobs:
     needs: build-java
 
     container:
-      image: asafsamuel/mint:prod
+      image: asafsamuel/mint:dev
     
     env:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
