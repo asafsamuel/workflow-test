@@ -1,4 +1,4 @@
-name: Test Pipeline
+name: Pipeline JunJun
 
 on:
   push:
@@ -40,13 +40,11 @@ jobs:
     needs: build-java
 
     container:
-      image: asafsamuel/mint:dev
+      image: asafsamuel/mint:prod
     
     env:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
       SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
-      SWEET_ENV: dev
-      SWEET_SUBENV: shiftleft
 
     steps:
       - name: Run Mint
