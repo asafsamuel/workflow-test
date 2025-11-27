@@ -1,4 +1,4 @@
-name: Pipeline JunJun
+name: Samuel Pipeline
 
 on:
   push:
@@ -45,6 +45,8 @@ jobs:
     env:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
       SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
+      SWEET_ENV: dev
+      SWEET_SUBENV: shiftleft
 
     steps:
       - name: Run Mint
