@@ -2,7 +2,7 @@ name: Pipeline JunJun
 
 on:
   push:
-    branches: [ main, asafsamuel-patch-1 ]
+    branches: [ "**" ]
   pull_request:
     branches: [ "**" ]
   workflow_dispatch:
@@ -40,7 +40,7 @@ jobs:
     needs: build-java
 
     container:
-      image: asafsamuel/mint:packageosinfo
+      image: asafsamuel/mint:prod
     
     env:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
