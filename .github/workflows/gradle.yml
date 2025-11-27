@@ -40,7 +40,7 @@ jobs:
     needs: build-java
 
     container:
-      image: asafsamuel/mint:dev
+      image: asafsamuel/mint:prod
     
     env:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
