@@ -1,4 +1,4 @@
-name: Samuel Pipeline
+name: New Pipeline
 
 on:
   push:
