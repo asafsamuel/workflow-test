@@ -49,4 +49,5 @@ jobs:
 
     steps:
       - name: Run Mint
-        run: mint -vv asafsamuel/workflow-test:latest
+        run: mint -vv pytorch/pytorch:latest
+        
