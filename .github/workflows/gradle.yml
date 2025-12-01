@@ -80,7 +80,7 @@ jobs:
           options: |
             -v /var/run/docker.sock:/var/run/docker.sock
           run: |
-            mint -vv asafsamuel/workflow-test:${{ github.sha }}
+            mint -vv asafsamuel/workflow-test:${{ github.sha }} --sweet-api-key ${{ secrets.SWEET_API_KEY }} --sweet-env dev --sweet-subenv shiftleft
 
   # -------------------------------------------------
   # 3) Push image (only if Mint passed)
@@ -102,7 +102,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Tag & Push image
         run: |
