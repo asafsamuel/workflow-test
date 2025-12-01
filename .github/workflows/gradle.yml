@@ -77,6 +77,7 @@ jobs:
             SWEET_SECRET=${{ secrets.SWEET_SECRET }}
             SWEET_ENV=dev
             SWEET_SUBENV=shiftleft
+            GITHUB_ACTIONS=github
           options: |
             -v /var/run/docker.sock:/var/run/docker.sock
           run: |
