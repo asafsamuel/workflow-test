@@ -71,14 +71,23 @@ jobs:
 
       - name: Run Mint
         run: |
+          # Just to be explicit, show the event path
+          echo "GITHUB_EVENT_PATH is: $GITHUB_EVENT_PATH"
+          ls -l "$GITHUB_EVENT_PATH" || echo "event.json not found yet?"
+
+          # Run Mint container with:
+          #  - all GITHUB_* envs
+          #  - SWEET_* secrets
+          #  - Docker socket
+          #  - event.json file mounted at the SAME path inside the container
           docker run --rm \
             --env-file github-envs.txt \
             -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
             -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
             -e SWEET_ENV='dev' \
             -e SWEET_SUBENV='shiftleft' \
-            -e GITHUB_ACTIONS='github' \
             -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "$GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH:ro" \
             asafsamuel/mint:stg \
             -vv asafsamuel/workflow-test:${{ github.sha }}
 
