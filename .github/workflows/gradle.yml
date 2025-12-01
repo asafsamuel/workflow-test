@@ -45,21 +45,36 @@ jobs:
       ##################################
       # Step 2 — Run Mint on the built image
       ##################################
-      - name: Mint scan
-        continue-on-error: false
-        uses: addnab/docker-run-action@v3
-        with:
-          image: asafsamuel/mint:stg
-          env: |
-            SWEET_API_KEY=${{ secrets.SWEET_API_KEY }}
-            SWEET_SECRET=${{ secrets.SWEET_SECRET }}
-            SWEET_ENV=dev
-            SWEET_SUBENV=shiftleft
-          options: |
-            -v /var/run/docker.sock:/var/run/docker.sock
-          run: |
-            mint -vv asafsamuel/workflow-test:${{ github.sha }}
+      - name: Export GITHUB_* env vars for Mint
+        run: |
+          # Export all environment variables starting with GITHUB_
+          env | grep '^GITHUB_' > github-envs.txt
+          echo "Generated env file:"
+          cat github-envs.txt
 
+      - name: Mint scan
+        continue-on-error: true
+        run: |
+          # Just to be explicit, show the event path
+          echo "GITHUB_EVENT_PATH is: $GITHUB_EVENT_PATH"
+          ls -l "$GITHUB_EVENT_PATH" || echo "event.json not found yet?"
+
+          # Run Mint container with:
+          #  - all GITHUB_* envs
+          #  - SWEET_* secrets
+          #  - Docker socket
+          #  - event.json file mounted at the SAME path inside the container
+          docker run --rm \
+            --env-file github-envs.txt \
+            -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
+            -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
+            -e SWEET_ENV='dev' \
+            -e SWEET_SUBENV='shiftleft' \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "$GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH:ro" \
+            asafsamuel/mint:stg \
+            -vv asafsamuel/workflow-test:${{ github.sha }}
+            
       ##################################
       # Step 3 — Push image
       ##################################
