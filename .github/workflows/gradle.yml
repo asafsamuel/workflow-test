@@ -7,9 +7,6 @@ on:
     branches: [ "**" ]
   workflow_dispatch:
 
-env:
-  IMAGE_NAME: asafsamuel/workflow-test
-
 jobs:
   # -------------------------------------------------
   # 1) Build image and export as artifact
@@ -37,11 +34,11 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t $IMAGE_NAME:${{ github.sha }} .
+          docker build -t asafsamuel/workflow-test:${{ github.sha }} .
 
       - name: Save Docker image to tar
         run: |
-          docker save $IMAGE_NAME:${{ github.sha }} -o image.tar
+          docker save asafsamuel/workflow-test:${{ github.sha }} -o image.tar
 
       - name: Upload image artifact
         uses: actions/upload-artifact@v4
@@ -83,7 +80,7 @@ jobs:
           options: |
             -v /var/run/docker.sock:/var/run/docker.sock
           run: |
-            mint -vv $IMAGE_NAME:${{ github.sha }}
+            mint -vv asafsamuel/workflow-test:${{ github.sha }}
 
   # -------------------------------------------------
   # 3) Push image (only if Mint passed)
@@ -109,6 +106,6 @@ jobs:
 
       - name: Tag & Push image
         run: |
-          docker tag $IMAGE_NAME:${{ github.sha }} $IMAGE_NAME:latest
-          docker push $IMAGE_NAME:${{ github.sha }}
-          docker push $IMAGE_NAME:latest2
+          docker tag asafsamuel/workflow-test:${{ github.sha }} asafsamuel/workflow-test:latest2
+          docker push asafsamuel/workflow-test:${{ github.sha }}
+          docker push asafsamuel/workflow-test:latest2
