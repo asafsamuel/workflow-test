@@ -72,7 +72,7 @@ jobs:
             -e GITHUB_ACTIONS='github' \
             -v /var/run/docker.sock:/var/run/docker.sock \
             asafsamuel/mint:stg \
-            mint -vv asafsamuel/workflow-test:${{ github.sha }}
+            -vv asafsamuel/workflow-test:${{ github.sha }}
 
   # -------------------------------------------------
   # 3) Push image (only if Mint passed)
