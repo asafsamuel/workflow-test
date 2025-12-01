@@ -62,9 +62,17 @@ jobs:
       - name: Load image into Docker
         run: docker load -i image.tar
 
+      - name: Export GITHUB_* env vars for Mint
+        run: |
+          # Export all environment variables starting with GITHUB_
+          env | grep '^GITHUB_' > github-envs.txt
+          echo "Generated env file:"
+          cat github-envs.txt
+
       - name: Run Mint
         run: |
           docker run --rm \
+            --env-file github-envs.txt \
             -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
             -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
             -e SWEET_ENV='dev' \
