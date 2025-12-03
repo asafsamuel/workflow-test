@@ -49,14 +49,5 @@ jobs:
 
     steps:
       - name: Run Mint (show only critical vulns)
-        run: mint asafsamuel/workflow-test:latest -o json \
-              | jq '.matches[]
-                 | select(.vulnerability.severity == "Critical")
-                 | {
-                     id: .vulnerability.id,
-                     severity: .vulnerability.severity,
-                     package: .artifact.name,
-                     version: .artifact.version,
-                   type: .artifact.type
-                   }'
+        run: mint asafsamuel/workflow-test:latest | grep "Critical"
 
