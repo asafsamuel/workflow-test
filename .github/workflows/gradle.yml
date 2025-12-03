@@ -49,4 +49,4 @@ jobs:
 
     steps:
       - name: Run Mint
-        run: mint -vv asafsamuel/workflow-test:latest
+        run: mint asafsamuel/workflow-test:latest | jq '.matches[] | select(.vulnerability.severity == "Critical") | { id: .vulnerability.id, severity: .vulnerability.severity, package: .artifact.name, version: .artifact.version, type: .artifact.type }'
