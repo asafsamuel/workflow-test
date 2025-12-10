@@ -1,4 +1,4 @@
-name: New Pipeline
+name: My Life Pipeline
 
 on:
   push:
@@ -8,38 +8,11 @@ on:
   workflow_dispatch:
     
 jobs:
-  build-java:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-
-    - name: Build with Gradle
-      run: ./gradlew build
-
-    - name: Build and Push Docker Image
-      uses: mr-smithers-excellent/docker-build-push@v4
-      with:
-        image: asafsamuel/workflow-test
-        tag: latest
-        registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-  
   mint:
     runs-on: ubuntu-latest
-    needs: build-java
 
     container:
-      image: asafsamuel/mint:stg
+      image: asafsamuel/mint:prod
     
     env:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
@@ -49,5 +22,5 @@ jobs:
 
     steps:
       - name: Run Mint
-        run: mint -vv pytorch/pytorch:latest
+        run: mint -vv python:3.12-slim
         
