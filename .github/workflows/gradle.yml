@@ -39,13 +39,13 @@ jobs:
     needs: build-java
 
     container:
-      image: asafsamuel/mint:stg5
+      image: asafsamuel/mint:prod
     
     env:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
       SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
       SWEET_ENV: dev
-      SWEET_SUBENV: shiftleft
+      SWEET_SUBENV: shiftleft2
 
     steps:
       - name: Run Mint (show only critical vulns)
