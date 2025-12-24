@@ -69,7 +69,7 @@ jobs:
             -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
             -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
             -e SWEET_ENV='dev' \
-            -e SWEET_SUBENV='shiftleft' \
+            -e SWEET_SUBENV='shiftleft4' \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v "$GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH:ro" \
             asafsamuel/mint:stg \
