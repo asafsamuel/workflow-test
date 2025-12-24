@@ -18,7 +18,7 @@ jobs:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
       SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
       SWEET_ENV: dev
-      SWEET_SUBENV: shiftleft2
+      SWEET_SUBENV: shiftleft4
 
     steps:
       - name: Run Mint
