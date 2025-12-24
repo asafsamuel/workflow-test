@@ -22,5 +22,5 @@ jobs:
 
     steps:
       - name: Run Mint
-        run: mint -vv python:3.12-slim
+        run: mint python:3.12-slim
         
