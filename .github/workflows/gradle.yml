@@ -72,7 +72,7 @@ jobs:
             -e SWEET_SUBENV='shiftleft4' \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v "$GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH:ro" \
-            asafsamuel/mint:stg \
+            asafsamuel/mint:latest \
             -vv asafsamuel/workflow-test:${{ github.sha }}
             
       ##################################
