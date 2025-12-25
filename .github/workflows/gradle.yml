@@ -22,5 +22,5 @@ jobs:
 
     steps:
       - name: Run Mint
-        run: mint registry.sweet.security/operator@sha256:af88a2f6bc4664a8fd68b4a8f420b7b4f8e25362
+        run: mint registry.sweet.security/operator:prod
         
