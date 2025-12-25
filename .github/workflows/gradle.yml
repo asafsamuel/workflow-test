@@ -22,5 +22,5 @@ jobs:
 
     steps:
       - name: Run Mint
-        run: mint python:3.12-slim
+        run: mint mcr.microsoft.com/oss/kubernetes-csi/csi-node-driver-registrar:v2.13.0
         
