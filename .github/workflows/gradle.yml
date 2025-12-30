@@ -22,5 +22,5 @@ jobs:
 
     steps:
       - name: Run Mint
-        run: mint -vv registry.sweet.security/operator:prod
-        
+        run: mint -vv mcr.microsoft.com/oss/kubernetes-csi/csi-node-driver-registrar:v2.13.0
+      
