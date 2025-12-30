@@ -22,5 +22,5 @@ jobs:
 
     steps:
       - name: Run Mint
-        run: mint -vv mcr.microsoft.com/oss/kubernetes-csi/csi-node-driver-registrar:v2.13.0
+        run: mint -vv registry.k8s.io/ingress-nginx/controller:v1.5.1
       
