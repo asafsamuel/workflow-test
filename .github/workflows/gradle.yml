@@ -45,25 +45,15 @@ jobs:
       ##################################
       # Step 2 — Run Mint on the built image
       ##################################
-      - name: Export GITHUB_* env vars for Mint
+      - name: Mint scan
+        continue-on-error: true
         run: |
           # Export all environment variables starting with GITHUB_
           env | grep '^GITHUB_' > github-envs.txt
           echo "Generated env file:"
           cat github-envs.txt
 
-      - name: Mint scan
-        continue-on-error: true
-        run: |
-          # Just to be explicit, show the event path
-          echo "GITHUB_EVENT_PATH is: $GITHUB_EVENT_PATH"
-          ls -l "$GITHUB_EVENT_PATH" || echo "event.json not found yet?"
-
-          # Run Mint container with:
-          #  - all GITHUB_* envs
-          #  - SWEET_* secrets
-          #  - Docker socket
-          #  - event.json file mounted at the SAME path inside the container
+          # Run Mint container
           docker run --rm \
             --env-file github-envs.txt \
             -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
@@ -71,7 +61,6 @@ jobs:
             -e SWEET_ENV='dev' \
             -e SWEET_SUBENV='shiftleft5' \
             -v /var/run/docker.sock:/var/run/docker.sock \
-            -v "$GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH:ro" \
             asafsamuel/mint:latest \
             -vv asafsamuel/workflow-test:${{ github.sha }}
             
@@ -80,6 +69,6 @@ jobs:
       ##################################
       - name: Push image
         run: |
-          docker tag asafsamuel/workflow-test:${{ github.sha }} asafsamuel/workflow-test:latest3
+          docker tag asafsamuel/workflow-test:${{ github.sha }} asafsamuel/workflow-test:latest4
           docker push asafsamuel/workflow-test:${{ github.sha }}
           docker push asafsamuel/workflow-test:latest3
