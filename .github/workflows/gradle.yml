@@ -45,7 +45,7 @@ jobs:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
       SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
       SWEET_ENV: dev
-      SWEET_SUBENV: shiftleft4
+      SWEET_SUBENV: shiftleft5
 
     steps:
       - name: Run Mint (show only critical vulns)
