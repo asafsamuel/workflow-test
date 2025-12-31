@@ -50,4 +50,3 @@ jobs:
     steps:
       - name: Run Mint (show only critical vulns)
         run: mint -vv asafsamuel/workflow-test:latest
-
