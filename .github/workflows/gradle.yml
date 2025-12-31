@@ -50,8 +50,6 @@ jobs:
         run: |
           # Export all environment variables starting with GITHUB_
           env | grep '^GITHUB_' > github-envs.txt
-          echo "Generated env file:"
-          cat github-envs.txt
 
           # Run Mint container
           docker run --rm \
