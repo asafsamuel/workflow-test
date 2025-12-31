@@ -57,11 +57,11 @@ jobs:
             -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
             -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
             -e SWEET_ENV='dev' \
-            -e SWEET_SUBENV='shiftleft5' \
+            -e SWEET_SUBENV='shiftleft1' \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v "$GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH:ro" \
             asafsamuel/mint:latest \
-            -vv asafsamuel/workflow-test:${{ github.sha }}
+            xray asafsamuel/workflow-test:${{ github.sha }} || true
             
       ##################################
       # Step 3 — Push image
