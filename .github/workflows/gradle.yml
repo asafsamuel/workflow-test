@@ -22,5 +22,5 @@ jobs:
 
     steps:
       - name: Run Mint
-        run: mint -vv registry.k8s.io/ingress-nginx/controller:v1.5.1
+        run: mint -vv registry.k8s.io/ingress-nginx/controller:v1.14.1
       
