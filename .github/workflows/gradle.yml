@@ -61,7 +61,7 @@ jobs:
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v "$GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH:ro" \
             asafsamuel/mint:latest \
-            xray asafsamuel/workflow-test:${{ github.sha }} || true
+            xray asafsamuel/workflow-test:${{ github.sha }}
             
       ##################################
       # Step 3 — Push image
