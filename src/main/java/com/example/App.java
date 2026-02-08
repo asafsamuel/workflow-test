@@ -9,14 +9,12 @@ import javax.annotation.PostConstruct;
 @SpringBootApplication
 public class App {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
 
     @PostConstruct
-    public void init()
-    {
+    public void init() {
         Logger log = LoggerFactory.getLogger(App.class);
         log.info("Java app started");
     }
