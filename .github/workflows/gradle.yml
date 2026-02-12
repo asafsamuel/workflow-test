@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: asafsamuel/mint:new
+      image: asafsamuel/mint:stg
     
     env:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
