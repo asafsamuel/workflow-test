@@ -1,8 +1,8 @@
-name: Test Pipeline
+name: New Pipeline
 
 on:
   push:
-    branches: [ main, asafsamuel-patch-1 ]
+    branches: [ "**" ]
   pull_request:
     branches: [ "**" ]
   workflow_dispatch:
@@ -33,21 +33,20 @@ jobs:
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-
-      
+  
   mint:
     runs-on: ubuntu-latest
     needs: build-java
 
     container:
-      image: asafsamuel/mint:prod
+      image: asafsamuel/mint:stg
     
     env:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
       SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
       SWEET_ENV: dev
-      SWEET_SUBENV: shiftleft
+      SWEET_SUBENV: shiftleft6
 
     steps:
-      - name: Run Mint
+      - name: Run Mint (show only critical vulns)
         run: mint -vv asafsamuel/workflow-test:latest
