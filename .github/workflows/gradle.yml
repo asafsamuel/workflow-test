@@ -60,8 +60,8 @@ jobs:
             -e SWEET_SUBENV='shiftleft6' \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v "$GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH:ro" \
-            asafsamuel/mint:latest \
-            xray asafsamuel/workflow-test:${{ github.sha }}
+            asafsamuel/mint:stg \
+            asafsamuel/workflow-test:${{ github.sha }}
             
       ##################################
       # Step 3 — Push image
