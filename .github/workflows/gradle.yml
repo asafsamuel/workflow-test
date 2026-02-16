@@ -70,4 +70,4 @@ jobs:
         run: |
           docker tag asafsamuel/workflow-test:${{ github.sha }} asafsamuel/workflow-test:latest4
           docker push asafsamuel/workflow-test:${{ github.sha }}
-          docker push asafsamuel/workflow-test:latest4
+          docker push asafsamuel/workflow-test:latest5
