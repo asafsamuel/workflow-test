@@ -49,4 +49,4 @@ jobs:
 
     steps:
       - name: Run Mint (show only critical vulns)
-        run: mint -vv asafsamuel/workflow-test@sha256:e13338fb9b3af83f7816b67a4c2b9daa8f79c47e5753f49070bacad088fcecf5
+        run: mint -vv asafsamuel/workflow-test:latest
