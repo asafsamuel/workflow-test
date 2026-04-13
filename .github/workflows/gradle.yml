@@ -53,6 +53,5 @@ jobs:
         run: |
           mint -vv asafsamuel/workflow-test:latest
           echo "::error::API_KEY is missing"
-          echo "### ❌ Deployment Failed" >> $GITHUB_STEP_SUMMARY
-          echo "- Reason: DB migration error" >> $GITHUB_STEP_SUMMARY
+          echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
           exit 1
