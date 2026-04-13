@@ -50,9 +50,9 @@ jobs:
 
     steps:
       - name: Run Mint
-        run: mint -vv asafsamuel/workflow-test:latest
-
-      - name: Validate environment variables
-        run: 
+        run: |
+          mint -vv asafsamuel/workflow-test:latest
           echo "::error::API_KEY is missing"
+          echo "### ❌ Deployment Failed" >> $GITHUB_STEP_SUMMARY
+          echo "- Reason: DB migration error" >> $GITHUB_STEP_SUMMARY
           exit 1
