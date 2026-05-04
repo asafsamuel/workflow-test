@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: asafsamuel/mint:stg
+      image: registry.sweet.security/mint:dev-v2
     
     env:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
       SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
       SWEET_ENV: dev
-      SWEET_SUBENV: shiftleft6
+      SWEET_SUBENV: mintv2v2
 
     steps:
       - name: Run Mint
