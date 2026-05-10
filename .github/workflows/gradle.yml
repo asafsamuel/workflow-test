@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: registry.sweet.security/mint:dev-v2
+      image: registry.sweet.security/mint:stg
     
     env:
-      SWEET_API_KEY: 6fd3aa9d-56f1-4654-992e-0c1da7fbc7ae
+      SWEET_API_KEY: ${{ secrets.SWEET_KEY_API }}
       SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
       SWEET_ENV: stg
 
