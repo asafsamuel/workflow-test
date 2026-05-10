@@ -39,7 +39,7 @@ jobs:
     needs: build-java
 
     container:
-      image: registry.sweet.security/mint:dev-v2
+      image: registry.sweet.security/mint:stg
     
     env:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
