@@ -13,7 +13,7 @@ jobs:
       image: registry.sweet.security/mint:stg
     
     env:
-      SWEET_API_KEY: ${{ secrets.SWEET_KEY_API }}
+      SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
       SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
       SWEET_ENV: stg
 
