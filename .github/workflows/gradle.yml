@@ -13,14 +13,11 @@ jobs:
       image: registry.sweet.security/mint:dev-v2
     
     env:
-      SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
+      SWEET_API_KEY: 6fd3aa9d-56f1-4654-992e-0c1da7fbc7ae
       SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
-      SWEET_ENV: dev
-      SWEET_SUBENV: mintv2v2
+      SWEET_ENV: stg
 
     steps:
       - name: Run Mint
         run: mint -vv registry.k8s.io/ingress-nginx/controller:v1.14.1
-      - name: Run Mint 2
-        run: mint -vv registry.k8s.io/ingress-nginx/controller:v1.12.0
       
