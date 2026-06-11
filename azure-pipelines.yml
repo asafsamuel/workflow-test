@@ -12,6 +12,9 @@ variables:
   SWEET_SECRET: $(SWEET_SECRET)
 
 steps:
+- script: printenv
+  displayName: 'Display all environment variables'
+
 - script: mint -vv registry:asafsamuel/workflow-test:latest4
   displayName: 'Run Mint (show only critical vulns)'
   env:
@@ -19,5 +22,3 @@ steps:
     SWEET_SECRET: $(SWEET_SECRET)
     SWEET_ENV: dev
     SWEET_SUBENV: mintv2v2
-- script: printenv
-  displayName: 'Display all environment variables'
