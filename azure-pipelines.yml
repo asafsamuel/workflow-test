@@ -1,0 +1,21 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+container:
+  image: registry.sweet.security/mint:azuredevops
+
+variables:
+  SWEET_API_KEY: $(SWEET_API_KEY)
+  SWEET_SECRET: $(SWEET_SECRET)
+
+steps:
+- script: mint -vv registry:asafsamuel/workflow-test:latest4
+  displayName: 'Run Mint (show only critical vulns)'
+  env:
+    SWEET_API_KEY: $(SWEET_API_KEY)
+    SWEET_SECRET: $(SWEET_SECRET)
+    SWEET_ENV: dev
+    SWEET_SUBENV: mintv2v2
