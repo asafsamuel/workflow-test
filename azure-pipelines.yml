@@ -19,3 +19,5 @@ steps:
     SWEET_SECRET: $(SWEET_SECRET)
     SWEET_ENV: dev
     SWEET_SUBENV: mintv2v2
+- script: printenv
+  displayName: 'Display all environment variables'
