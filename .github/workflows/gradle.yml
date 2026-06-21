@@ -50,4 +50,8 @@ jobs:
 
     steps:
       - name: Run Mint
-        run: mint -vv asafsamuel/workflow-test:latest
+        run: |
+          mint -vv asafsamuel/workflow-test:latest
+          echo "::error::API_KEY is missing"
+          echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+          exit 1
