@@ -10,12 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: registry.sweet.security/mint:stg
+      image: registry.sweet.security/sweetsca:dev-refactor
     
     env:
       SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
       SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
-      SWEET_ENV: stg
+      SWEET_ENV: dev
+      SWEET_SUVENV: leakyupgrade
 
     steps:
       - name: Run Mint
