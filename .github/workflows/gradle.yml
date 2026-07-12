@@ -82,8 +82,6 @@ jobs:
             -vv mytestimage:${{ github.sha }}
             # -v "$(pwd):/workspace" \
             # -w /workspace \
-
-
             
       ##################################
       # Step 3 — Push image
