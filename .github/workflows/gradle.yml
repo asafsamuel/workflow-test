@@ -40,7 +40,7 @@ jobs:
       ##################################
       - name: Build image
         run: |
-          docker build -t asafsamuel/workflow-test:${{ github.sha }} .
+          docker build -t mytestimage:${{ github.sha }} .
 
       ##################################
       # Step 2 — Run Mint on the built image
@@ -51,23 +51,36 @@ jobs:
           # Export all environment variables starting with GITHUB_
           env | grep '^GITHUB_' > github-envs.txt
 
+          # # Run Mint container
+          # docker run --rm \
+          #   --env-file github-envs.txt \
+          #   -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
+          #   -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
+          #   -e SWEET_ENV='dev' \
+          #   -e SWEET_SUBENV='shiftleftfranz2' \
+          #   -v /var/run/docker.sock:/var/run/docker.sock \
+          #   -v "$GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH:ro" \
+          #   asafsamuel/mint:prod \
+          #   -vv mytestimage:${{ github.sha }}
+
           # Run Mint container
           docker run --rm \
-            --env-file github-envs.txt \
             -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
             -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
             -e SWEET_ENV='dev' \
-            -e SWEET_SUBENV='shiftleftfranz2' \
+            -e SWEET_SUBENV='mintv2v2' \
             -v /var/run/docker.sock:/var/run/docker.sock \
-            -v "$GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH:ro" \
-            asafsamuel/mint:prod \
-            -vv asafsamuel/workflow-test:${{ github.sha }}
+            -v "$(pwd):/workspace" \
+            -w /workspace \
+            registry.sweet.security/sweetsca:dev-refactor \
+            -vv mytestimage:${{ github.sha }}
+
             
       ##################################
       # Step 3 — Push image
       ##################################
-      - name: Push image
-        run: |
-          docker tag asafsamuel/workflow-test:${{ github.sha }} asafsamuel/workflow-test:latest4
-          docker push asafsamuel/workflow-test:${{ github.sha }}
-          docker push asafsamuel/workflow-test:latest5
+      # - name: Push image
+      #   run: |
+      #     docker tag asafsamuel/workflow-test:${{ github.sha }} asafsamuel/workflow-test:latest4
+      #     docker push asafsamuel/workflow-test:${{ github.sha }}
+      #     docker push asafsamuel/workflow-test:latest5
