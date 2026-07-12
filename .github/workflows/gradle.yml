@@ -1,4 +1,4 @@
-name: My Life Pipeline
+name: New Pipeline
 
 on:
   push:
