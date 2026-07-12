@@ -63,24 +63,24 @@ jobs:
           #   asafsamuel/mint:prod \
           #   -vv mytestimage:${{ github.sha }}
 
-          docker run --rm \
-            -v "$(pwd):/workspace" \
-            -w /workspace \
-            --entrypoint ls \
-            registry.sweet.security/sweetsca:dev-refactor \
-            -la
-
-          # # Run Mint container
           # docker run --rm \
-          #   -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
-          #   -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
-          #   -e SWEET_ENV='dev' \
-          #   -e SWEET_SUBENV='mintv2v2' \
-          #   -v /var/run/docker.sock:/var/run/docker.sock \
           #   -v "$(pwd):/workspace" \
           #   -w /workspace \
+          #   --entrypoint ls \
           #   registry.sweet.security/sweetsca:dev-refactor \
-          #   -vv mytestimage:${{ github.sha }}
+          #   -la
+
+          # # Run Mint container
+          docker run --rm \
+            -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
+            -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
+            -e SWEET_ENV='dev' \
+            -e SWEET_SUBENV='mintv2v2' \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "$(pwd):/workspace" \
+            -w /workspace \
+            registry.sweet.security/sweetsca:dev-refactor \
+            -vv mytestimage:${{ github.sha }}
 
             
       ##################################
