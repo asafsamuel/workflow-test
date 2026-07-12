@@ -75,6 +75,7 @@ jobs:
             # registry.sweet.security/sweetsca:dev-refactor \
             # -vv mytestimage:${{ github.sha }}
             --entrypoint /bin/sh \
+            registry.sweet.security/sweetsca:dev-refactor \
             -c "echo 'Contents of /workspace:' && ls -la && exec /app/sweetsca -vv mytestimage:${{ github.sha }}"
 
             
