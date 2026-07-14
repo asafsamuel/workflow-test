@@ -72,7 +72,7 @@ jobs:
 
           # # Run Mint container
           docker run --rm \
-            --env-file github-envs.txt
+            --env-file github-envs.txt \
             -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
             -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
             -e SWEET_ENV='dev' \
