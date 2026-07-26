@@ -52,16 +52,16 @@ jobs:
           env | grep '^GITHUB_' > github-envs.txt
 
           # # Run Mint container
-          # docker run --rm \
-          #   --env-file github-envs.txt \
-          #   -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
-          #   -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
-          #   -e SWEET_ENV='dev' \
-          #   -e SWEET_SUBENV='shiftleftfranz2' \
-          #   -v /var/run/docker.sock:/var/run/docker.sock \
-          #   -v "$GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH:ro" \
-          #   asafsamuel/mint:prod \
-          #   -vv mytestimage:${{ github.sha }}
+          docker run --rm \
+            --env-file github-envs.txt \
+            -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
+            -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
+            -e SWEET_ENV='dev' \
+            -e SWEET_SUBENV='shiftleftfranz2' \
+            # -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "$GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH:ro" \
+            asafsamuel/mint:prod \
+            -vv mytestimage:${{ github.sha }}
 
           # docker run --rm \
           #   -v "$(pwd):/workspace" \
@@ -70,15 +70,15 @@ jobs:
           #   registry.sweet.security/sweetsca:dev-refactor \
           #   -la
 
-          # # Run Mint container
-          docker run --rm \
-            -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
-            -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
-            -e SWEET_ENV='dev' \
-            -e SWEET_SUBENV='mintv2v2' \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            registry.sweet.security/sweetsca:dev-refactor \
-            -vv mytestimage:${{ github.sha }}
+          # # # Run Mint container
+          # docker run --rm \
+          #   -e SWEET_API_KEY='${{ secrets.SWEET_API_KEY }}' \
+          #   -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
+          #   -e SWEET_ENV='dev' \
+          #   -e SWEET_SUBENV='mintv2v2' \
+          #   -v /var/run/docker.sock:/var/run/docker.sock \
+          #   registry.sweet.security/sweetsca:dev-refactor \
+          #   -vv mytestimage:${{ github.sha }}
             
       ##################################
       # Step 3 — Push image
