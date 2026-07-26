@@ -6,19 +6,30 @@ on:
   workflow_dispatch:
     
 jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Mint Custom Action
+        uses: asafsamuel/action-test@main
+        with:
+          image: registry.k8s.io/ingress-nginx/controller:v1.14.1
+          from: registry
+          verbose: -vv
+
   mint:
     runs-on: ubuntu-latest
 
     container:
-      image: registry.sweet.security/sweetsca:dev-refactor
+      image: registry.sweet.security/mint:prod
     
-    env:
-      SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
-      SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
-      SWEET_ENV: dev
-      SWEET_SUBENV: mintv2v2
+    # env:
+    #   SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
+    #   SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
+    #   SWEET_ENV: dev
+    #   SWEET_SUBENV: mintv2v2
 
     steps:
       - name: Run Mint
-        run: sweetsca -vv registry.k8s.io/ingress-nginx/controller:v1.14.1
+        run: mint -vv registry.k8s.io/ingress-nginx/controller:v1.14.1
       
