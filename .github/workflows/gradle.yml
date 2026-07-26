@@ -58,10 +58,11 @@ jobs:
             -e SWEET_SECRET='${{ secrets.SWEET_SECRET }}' \
             -e SWEET_ENV='dev' \
             -e SWEET_SUBENV='shiftleftfranz2' \
-            # -v /var/run/docker.sock:/var/run/docker.sock \
             -v "$GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH:ro" \
             asafsamuel/mint:prod \
             -vv mytestimage:${{ github.sha }}
+
+            # -v /var/run/docker.sock:/var/run/docker.sock \
 
           # docker run --rm \
           #   -v "$(pwd):/workspace" \
