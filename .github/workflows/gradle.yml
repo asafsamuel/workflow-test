@@ -18,6 +18,7 @@ jobs:
           verbose: -vv
           sweet-env: prod
           api-key: ${{ secrets.SWEET_API_KEY }}
+          sweet-mint-image: registry.sweet.security/mint:prod
 
   mint:
     runs-on: ubuntu-latest
