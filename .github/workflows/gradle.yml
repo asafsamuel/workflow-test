@@ -11,14 +11,13 @@ jobs:
 
     steps:
       - name: Run Mint Custom Action
-        uses: asafsamuel/action-test@main
+        uses: sweet-security/mint-scan-action@main
         with:
           image: registry.k8s.io/ingress-nginx/controller:v1.14.1
           from: registry
           verbose: -vv
           sweet-env: prod
           api-key: ${{ secrets.SWEET_API_KEY }}
-          sweet-mint-image: registry.sweet.security/mint:prod
 
   mint:
     runs-on: ubuntu-latest
