@@ -39,13 +39,8 @@ jobs:
     needs: build-java
 
     container:
-      image: registry.sweet.security/mint:stg
-    
-    env:
-      SWEET_API_KEY: ${{ secrets.SWEET_API_KEY }}
-      SWEET_SECRET: ${{ secrets.SWEET_SECRET }}
-      SWEET_ENV: stg
+      image: registry.sweet.security/sweetsca:prod
 
     steps:
-      - name: Run Mint (show only critical vulns)
-        run: mint -vv registry:asafsamuel/workflow-test:latest4
+      - name: Run SweetSCA
+        run: sweetsca registry:asafsamuel/workflow-test:latest4 --sweet-api-key=adced49e-8652-4972-82c6-c5de6639609c --sweet-env=dev --sweet-subenv=mintv2v3 -vv
