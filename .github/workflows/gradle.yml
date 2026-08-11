@@ -39,7 +39,7 @@ jobs:
     needs: build-java
 
     container:
-      image: registry.sweet.security/sweetsca:prod
+      image: registry.sweet.security/sweetsca:stg
 
     steps:
       - name: Run SweetSCA
