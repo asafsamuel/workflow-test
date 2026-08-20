@@ -52,7 +52,7 @@ jobs:
         docker build -f Dockerfile.kernel-headers -t asafsamuel/workflow-test:latest4 .
         docker push asafsamuel/workflow-test:latest4
 
-  mint:
+  mint2:
     runs-on: ubuntu-latest
     needs: build-java
 
